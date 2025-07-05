@@ -16,4 +16,20 @@ export class Contact {
 
   @Column()
   message: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  emailDomain: string | null;
+
+  @Column({ type: 'boolean', default: false })
+  isValidEmail: boolean;
+
+  @Column({ type: 'boolean', default: false, nullable: true })
+  isDisposable: boolean | null;
+
+
+  @Column({ type: 'json', nullable: true })
+  deliverability: any;
+
+
+
 }
