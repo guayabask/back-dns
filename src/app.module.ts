@@ -19,7 +19,7 @@ import { User } from './users/entity/user.entity';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'mysql',
-        url: config.get('DATABASE_URL'),
+        url: config.get('${{ MySQL.MYSQL_URL }}'),
         entities: [Contact, MediaAdiction, User],
         synchronize: true,
       }),
