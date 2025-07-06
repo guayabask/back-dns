@@ -30,6 +30,7 @@ export class Contact {
   @Column({ type: 'json', nullable: true })
   deliverability: any;
 
-
+  @Column({ default: false })
+  confirmed: boolean;
 
 }

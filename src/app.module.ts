@@ -25,7 +25,7 @@ import { User } from './users/entity/user.entity';
         password: config.get('DB_PASSWORD'),
         database: config.get('DB_NAME'),
         entities: [Contact, MediaAdiction, User],
-        synchronize: true, // ⚠️ Solo en desarrollo
+        synchronize: true,
       }),
     }),
     ContactModule,

@@ -6,6 +6,7 @@ import { CreateContactDto } from './dto/create-contact.dto';
 import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
 import { UpdateContactDto } from './dto/update-contact.dto';
+import { MailService } from 'src/mail.service';
 
 @Injectable()
 export class ContactService {
@@ -13,6 +14,7 @@ export class ContactService {
     @InjectRepository(Contact)
     private readonly contactRepository: Repository<Contact>,
     private readonly configService: ConfigService,
+    private readonly mailService: MailService, // 👈 inyecta MailService
   ) {}
 
   async create(createContactDto: CreateContactDto): Promise<Contact> {
@@ -35,6 +37,9 @@ export class ContactService {
     } catch (error) {
       console.error('Error validando el email:', error.message);
     }
+
+    // 👉 envía correo de notificación antes o después de guardar
+    await this.mailService.sendNewContactNotification(contact);
 
     return this.contactRepository.save(contact);
   }
