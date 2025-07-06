@@ -19,19 +19,16 @@ import { User } from './users/entity/user.entity';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'mysql',
-        host: config.get('DB_HOST'),
-        port: 3306,
-        username: config.get('DB_USER'),
-        password: config.get('DB_PASSWORD'),
-        database: config.get('DB_NAME'),
+        url: config.get('DATABASE_URL'),
         entities: [Contact, MediaAdiction, User],
         synchronize: true,
       }),
     }),
+
     ContactModule,
     MediaAdictionModule,
     AuthModule,
     UsersModule,
   ],
 })
-export class AppModule {}
+export class AppModule { }
