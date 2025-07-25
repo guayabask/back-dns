@@ -19,22 +19,19 @@ import { User } from './users/entity/user.entity';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'mysql',
-        host: config.get<string>('MYSQLHOST') || 'mysql.railway.internal',
-        port: parseInt(config.get<string>('MYSQLPORT') || '3306', 10),
-        username: config.get<string>('MYSQLUSER') || 'root',
-        password: config.get<string>('MYSQLPASSWORD') || 'suasenha',
-        database: config.get<string>('MYSQLDATABASE') || 'nomedobanco',
+        host: config.get<string>('DB_HOST') || 'localhost',
+        port: parseInt(config.get<string>('DB_PORT') || '3306', 10),
+        username: config.get<string>('DB_USER') || 'root',
+        password: config.get<string>('DB_PASSWORD') || '',
+        database: config.get<string>('DB_NAME') || 'nest_contacts',
         entities: [Contact, MediaAdiction, User],
         synchronize: true,
       }),
     }),
-
-
-
     ContactModule,
     MediaAdictionModule,
     AuthModule,
     UsersModule,
   ],
 })
-export class AppModule { }
+export class AppModule {}
